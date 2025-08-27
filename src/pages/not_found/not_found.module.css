@@ -1,0 +1,8 @@
+.main {
+  font-weight: bold;
+  margin: auto;
+  font-size: 20pt;
+  text-align: center;
+  display: inherit;
+  opacity: 60%;
+}

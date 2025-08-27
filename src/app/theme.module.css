@@ -1,0 +1,27 @@
+:root {
+  --main-dark-backgroun-color:  rgb(2, 36, 24);
+  --main-dark-backgroun-color-tr:  rgb(2, 36, 24, 0.8);
+  --main-light-dark-backgroun-color:  rgb(52, 90, 53);
+  --main-black-font-color: black;
+  --main-light-background-color: rgb(203, 209, 197);
+  --main-light-border-color:rgb(166, 184, 139);
+  --main-white-color:rgb(198, 212, 174);
+  --main-white-color-tr:rgb(198, 212, 174, 0.8);
+  --main-btn-light-color:rgb(146, 161, 120);
+  --main-btn-dark-color:rgb(158, 173, 132);
+
+  --main-light-dark-backgroun-color-dis: rgb(46, 66, 59);
+  --main-btn-light-color-dis:  rgb(104, 110, 104);
+}
+
+.light {
+    background-color: var(--main-light-background-color);
+    color: var(--main-black-font-color);
+    border-color: var(--main-dark-backgroun-color);
+}
+
+.dark {
+    background-color: var(--main-dark-backgroun-color);
+    color: var(--main-light-background-color);
+    border-color:var(--main-light-background-color);
+}

@@ -1,0 +1,84 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .title {
+    height: 15%;
+    margin: auto;
+    font-size: 16pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 4px 3px 10px;
+  
+}
+  .modalContent {
+    border-radius: 2px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+
+    &.dark {
+        color: var(--main-white-color);
+        background-color: var(--main-dark-backgroun-color);
+        border-color: var(--main-light-border-color);
+        .title {
+            background: linear-gradient(to bottom, var(--main-light-border-color), var(--main-white-color));
+            color: var(--main-dark-backgroun-color);
+            .closeButton {
+              background-color:  var(--main-dark-backgroun-color);
+              & > span > span {
+                color: var(--main-white-color);
+              }
+              &:hover {
+                background-color:  var(--main-dark-backgroun-color) !important;
+                opacity: 50%;
+                & > span > span {
+                  color: var(--main-white-color);
+                }
+              } 
+            }
+        }
+    }
+
+    &.light {
+        opacity: 100%;
+        color: var(--main-dark-backgroun-color);
+        background-color: var(--main-light-background-color);
+        border-color: var(--main-dark-backgroun-color);
+        .title {
+            background: linear-gradient(to bottom, var(--main-dark-backgroun-color), var(--main-light-dark-backgroun-color));
+            color: var(--main-white-color);
+            .closeButton {
+              background-color:  var(--main-white-color);
+              & > span > span {
+                color: var(--main-dark-backgroun-color);
+              }
+              &:hover {
+                background-color:  var(--main-white-color) !important;
+                opacity: 50%;
+                & > span > span {
+                  color: var(--main-dark-backgroun-color);
+                }
+              } 
+            }
+        }
+    }
+  }
+  
+  .modalBody {
+    height: 84%;
+  }

@@ -1,0 +1,20 @@
+@import "../../app/theme.module.css";
+
+.main {
+    display: flex;
+    margin-block: auto;
+    margin-top: 0;
+    border: 1px solid black;
+}
+
+.dark {
+    background-color: var(--main-dark-backgroun-color);
+    color: var(--main-light-border-color);
+    border: 1px solid var(--main-light-border-color);
+}
+
+.light {
+    background-color: var(--main-light-background-color);
+    color: var(--main-dark-backgroun-color);
+    border: 1px solid var(--main-dark-backgroun-color);
+} 

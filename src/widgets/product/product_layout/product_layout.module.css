@@ -1,0 +1,68 @@
+@import "../../../app/theme.module.css";
+
+.main {
+    width: 100%;
+}
+
+.showMoreBtn {
+    font-weight: bold;
+    border-radius: 0;
+    width: 200px;
+    height: 30px;
+    font-size: 12pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: auto;
+    display: block;
+}
+
+.products {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    float: inline-end;
+    width: 98%;
+}
+
+.productsSmall {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    float: inline-end;
+    width: 77%;
+}
+
+.showMoreBtn {
+  &.light {
+    border: solid 1px var(--main-light-dark-backgroun-color);
+    background-color:  var(--main-light-dark-backgroun-color);
+    color: var(--main-white-color);
+    opacity: 0.8;
+    &:hover {
+        border: solid 1px var( --main-light-background-color);
+    }
+
+    &:disabled {
+      background-color:  var(--main-light-dark-backgroun-color-dis);
+      border: solid 1px var(--main-light-dark-backgroun-color-dis);
+    }
+  }
+
+  &.dark {
+    background-color: var(--main-btn-light-color) !important;
+    color: var(--main-dark-backgroun-color);
+    border: solid 1px var(--main-btn-light-color);
+    &:hover {
+        border: solid 1px var(--main-dark-backgroun-color);
+    }
+    &:disabled {
+      border: solid 1px var(--main-btn-light-color-dis);
+      background-color: var(--main-btn-light-color-dis) !important;
+    }
+  }
+}
+
+.content_button {
+  display: flex;
+  flex-direction: row;
+}
+

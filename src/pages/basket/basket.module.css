@@ -1,0 +1,28 @@
+.button {
+  width: 10%;
+  min-width: 100px;
+  margin: 50px auto 0 auto;
+  display: block;
+
+  &.light {
+    background-color: var(--main-dark-backgroun-color);
+    color: var(--main-light-border-color);
+
+    &:hover {
+      background-color: var(--main-dark-backgroun-color) !important;
+      color: var(--main-light-border-color) !important;
+      opacity: 70%;
+    }
+  }
+
+  &.dark {
+    background-color: var(--main-light-background-color);
+    color: var(--main-dark-backgroun-color);
+
+    &:hover {
+      background-color: var(--main-light-background-color) !important;
+      color: var(--main-dark-backgroun-color) !important;
+      opacity: 70%;
+    }
+  }
+}

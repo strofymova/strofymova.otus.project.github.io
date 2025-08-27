@@ -1,0 +1,16 @@
+/* styles.css */
+/* @import "../../../app/styles/common.scss"; */
+
+.root {
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--bright-text);
+}
+
+.required::after {
+  display: inline-block;
+  padding-left: 4px;
+  content: '*';
+  color: var(--main-red);
+  font-size: 12px;
+}

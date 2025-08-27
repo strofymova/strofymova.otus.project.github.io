@@ -1,0 +1,11 @@
+.main {
+    background-image: url('../../assets/logo.png');
+    background-size: contain;
+    background-position: left;
+    position: relative;
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    float: left;
+    background-repeat: no-repeat;
+}

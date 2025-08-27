@@ -1,0 +1,93 @@
+.main {
+    width: 350px;
+    height: 230px;
+    border: solid 1px;
+    border-radius: 1px;
+    margin-bottom: 10px;
+
+    &.dark {
+        border-color: var(--main-light-border-color);
+        .title {
+            background: linear-gradient(to bottom, var(--main-light-border-color), var(--main-white-color));
+            color: var(--main-dark-backgroun-color);
+            & > button {
+              background-color:  var(--main-dark-backgroun-color);
+              .edit_button {
+                color: var(--main-white-color);
+              }
+              &:hover {
+                background-color:  var(--main-dark-backgroun-color) !important;
+                opacity: 50%;
+                .edit_button {
+                  color: var(--main-white-color);
+                }
+              } 
+            }
+        }
+
+      .content:hover {
+        background-color:  var(--main-white-color-tr) !important;
+        opacity: 60%;
+        cursor: pointer;
+      }
+ 
+    }
+
+    &.light {
+        border-color: var(--main-dark-backgroun-color);
+        .title {
+            background: linear-gradient(to bottom, var(--main-dark-backgroun-color), var(--main-light-dark-backgroun-color));
+            color: var(--main-white-color);
+            & > button {
+              background-color:  var(--main-white-color);
+              .edit_button {
+                color: var(--main-dark-backgroun-color);
+              }
+              &:hover {
+                background-color:  var(--main-white-color) !important;
+                opacity: 50%;
+                .edit_button {
+                  color: var(--main-dark-backgroun-color);
+                }
+              } 
+            }
+        }
+
+        .content:hover {
+          background-color:  var(--main-dark-backgroun-color) !important;
+          opacity: 60%;
+          cursor: pointer;
+        }
+
+    }
+}
+
+.img {
+    max-height: 90%;
+    max-width: 80%;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+}
+
+.content {
+  height: 87%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+    height: 13%;
+    margin: auto;
+    font-size: 16pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} 

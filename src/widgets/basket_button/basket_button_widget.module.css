@@ -1,0 +1,68 @@
+.main {
+    width: 140px;
+    height: 25px;
+}
+
+.base_btn {
+    font-weight: bold;
+    font-size: 10pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 0;
+    &.dark {
+        background-color: var(--main-btn-light-color) !important;
+        color: var(--main-dark-backgroun-color);
+        border: solid 1px var(--main-btn-light-color);
+        &:hover {
+            border: solid 1px var(--main-dark-backgroun-color);
+        }
+    }
+    &.light {
+        border: solid 1px var(--main-light-dark-backgroun-color);
+        background-color:  var(--main-light-dark-backgroun-color);
+        color: var(--main-white-color);
+        &:hover {
+            border: solid 1px var( --main-light-background-color);
+        }
+    }
+    &:disabled {
+        background-color: var(--main-btn-light-color) !important;
+        opacity: 40%;
+        &.dark {
+            color: var(--main-dark-backgroun-color);
+            border: solid 1px var(--main-btn-light-color);
+            &:hover {
+                border: solid 1px var(--main-btn-light-color);
+            }
+        }
+        &.light {
+            color: var(--main-dark-backgroun-color);
+            border: solid 1px var(--main-btn-light-color);
+            &:hover {
+                border: solid 1px var(--main-btn-light-color);
+            }
+        }
+    }
+    
+}
+
+.basket_btn {
+    width: 100%;
+    height: 100%;
+}
+
+.counter_btn {
+    width: 18.5%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.count_input {
+    width: 60%;
+    height: 90%;
+    display: inline-block;
+    padding: 1px 0 1px 0;
+    text-align: center; 
+    border: none;
+    background-color: rgb(225, 226, 212);
+}
