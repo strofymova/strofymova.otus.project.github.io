@@ -13,7 +13,6 @@ export type ChangePasswordInput = {
 
 export type Profile = UserInterface & {
   __typename?: 'Profile';
-  about?: Maybe<Scalars['String']['output']>;
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
@@ -75,7 +74,7 @@ export type UserFilters = {
 };
 
 export type UserInterface = {
-  about?: Maybe<Scalars['String']['output']>;
+  // about?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
   signUpDate: Scalars['String']['output'];
