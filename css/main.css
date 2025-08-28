@@ -249,22 +249,29 @@
     min-width: 200px; 
     width: 20%;
     transition: 0.3s;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-start
 }
 
 .filter_layout-module_hide-Sg3um {
     width: 1.5%;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .filter_layout-module_show_btn-vmgmh {
-    /* min-width: 200px; 
-    width: 20%;
-    transition: 0.3s; */
+    position: relative;
+    right: -4px;
 }
 
 .filter_layout-module_hide_btn-YmBkx {
-    /* width: 1.5%;
-    transition: 0.3s; */
+    position: relative;
+    right: -4px;
+    top: 318px;
 }
 
 .filter_layout-module_light-a2gEk {
@@ -272,6 +279,18 @@
     box-shadow: 1px 3px 20px 0 var(--main-dark-backgroun-color);
     background-color: var(--main-light-background-color);
     color: var(--main-dark-backgroun-color);
+
+    .filter_layout-module_show_btn-vmgmh, .filter_layout-module_hide_btn-YmBkx {
+        background-color: var(--main-dark-backgroun-color);
+        color: var(--main-light-border-color);
+        border-color: var(--main-dark-backgroun-color);
+
+        &:hover {
+            background-color: var(--main-dark-backgroun-color) !important;
+            color: var(--main-light-border-color) !important;
+            border-color:var(--main-light-background-color);
+        }
+    }
 }
 
 .filter_layout-module_dark-LbqX8 {
@@ -279,6 +298,18 @@
     box-shadow: 1px 3px 20px 0 var(--main-light-border-color);
     background-color: var(--main-dark-backgroun-color);
     color: var(--main-light-border-color);
+
+    .filter_layout-module_show_btn-vmgmh, .filter_layout-module_hide_btn-YmBkx {
+        background-color: var(--main-light-background-color);
+        color: var(--main-dark-backgroun-color);
+        border-color: var(--main-light-background-color);
+
+        &:hover {
+            background-color: var(--main-light-background-color) !important;
+            color: var(--main-dark-backgroun-color) !important;
+            border-color: var(--main-dark-backgroun-color);
+        }
+    }
 }
 
 .filter_layout-module_select-JX_uG {
