@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
 import Input from 'antd/lib/input';
-import { FormikHandlers } from 'formik/dist/types';
+import type { FormikHandlers } from 'formik/dist/types';
 import { LockOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 

@@ -35,9 +35,9 @@ export const CategoryList: React.FC<ICategoryList> = React.memo(({ className }: 
   const navigate = useNavigate();
   const { isAdmin, isLoading } = useAdminRight(profile);
 
-  useEffect(()=>{
-    console.log("need update")
-  },[profile]);
+  useEffect(() => {
+    console.log('need update');
+  }, [profile]);
 
   const handleOnClickCategory = (id: string) => {
     navigate(`/category/${id}`);

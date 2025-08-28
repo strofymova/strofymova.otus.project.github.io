@@ -30,7 +30,7 @@ const Basket: React.FC = React.memo(() => {
     if (code === null) {
       message.error(error.message);
     } else if (basketProducts.length === 0) {
-      message.error("Please, add product to basket");
+      message.error('Please, add product to basket');
     } else {
       message.error(code);
     }

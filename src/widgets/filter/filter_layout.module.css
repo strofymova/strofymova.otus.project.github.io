@@ -20,11 +20,29 @@
     min-width: 200px; 
     width: 20%;
     transition: 0.3s;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-start
 }
 
 .hide {
     width: 1.5%;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.show_btn {
+    position: relative;
+    right: -4px;
+}
+
+.hide_btn {
+    position: relative;
+    right: -4px;
+    top: 318px;
 }
 
 .light {
@@ -32,6 +50,18 @@
     box-shadow: 1px 3px 20px 0 var(--main-dark-backgroun-color);
     background-color: var(--main-light-background-color);
     color: var(--main-dark-backgroun-color);
+
+    .show_btn, .hide_btn {
+        background-color: var(--main-dark-backgroun-color);
+        color: var(--main-light-border-color);
+        border-color: var(--main-dark-backgroun-color);
+
+        &:hover {
+            background-color: var(--main-dark-backgroun-color) !important;
+            color: var(--main-light-border-color) !important;
+            border-color:var(--main-light-background-color);
+        }
+    }
 }
 
 .dark {
@@ -39,6 +69,18 @@
     box-shadow: 1px 3px 20px 0 var(--main-light-border-color);
     background-color: var(--main-dark-backgroun-color);
     color: var(--main-light-border-color);
+
+    .show_btn, .hide_btn {
+        background-color: var(--main-light-background-color);
+        color: var(--main-dark-backgroun-color);
+        border-color: var(--main-light-background-color);
+
+        &:hover {
+            background-color: var(--main-light-background-color) !important;
+            color: var(--main-dark-backgroun-color) !important;
+            border-color: var(--main-dark-backgroun-color);
+        }
+    }
 }
 
 .select {

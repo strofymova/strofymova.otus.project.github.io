@@ -13,14 +13,14 @@ export const useInitialization = () => {
 
   const token = useSelector(tokenSelectors.get);
   const isAuth = token != null && token != undefined;
-  
+
   const dispatch = useDispatch();
   const {
     refetch: refetchProfile,
     loading: profileLoading,
-    error: profileError
+    error: profileError,
   } = useQuery<GetProfileResponse>(GET_PROFILE, {
-    skip: !isAuth, 
+    skip: !isAuth,
     onCompleted: (data) => {
       if (data.profile) {
         dispatch(profileActions.set(data.profile));
@@ -31,7 +31,6 @@ export const useInitialization = () => {
     },
     fetchPolicy: 'network-only',
   });
-    
 
   const { loading: categoriesLoading, error: categoriesError } = useQuery<GetCategoryResponseQueries>(GET_CATEGORY, {
     onCompleted: (data) => {
@@ -52,7 +51,7 @@ export const useInitialization = () => {
     }
   }, [isAuth, refetchProfile, dispatch]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (profileError) {
       setError(profileError.message);
     } else if (categoriesError) {
@@ -61,6 +60,6 @@ export const useInitialization = () => {
       setError(null);
     }
   }, [profileError, categoriesError]);
-  
+
   return { error };
 };

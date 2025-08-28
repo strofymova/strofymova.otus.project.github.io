@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import styles from './filter_layout.module.css';
 import { SortingInput } from '../../entities/base.types';
 import { useThemeStyles } from '../../shared/hooks/useThemeStyles';
+import { Button } from 'antd';
+import { DoubleLeftOutlined, DoubleRightOutlined, EditOutlined } from '@ant-design/icons';
 
 interface IFilterState {
   visibility: boolean;
@@ -36,11 +38,11 @@ const FilterLayout = forwardRef<HTMLDivElement, IFilterLayoutProps>(
       setStyleName(state.visibility ? styles.show : styles.hide);
     }, [state.visibility]);
 
-    const handleOnHoverEnter = () => {
+    const handleShow = () => {
       setState((prev) => ({ ...prev, visibility: true }));
     };
 
-    const handleOnHoverLeave = () => {
+    const handleHide = () => {
       setState((prev) => ({ ...prev, visibility: false }));
     };
 
@@ -48,22 +50,40 @@ const FilterLayout = forwardRef<HTMLDivElement, IFilterLayoutProps>(
       <div
         ref={ref}
         className={clsx(mainStyle, styleName)}
-        onMouseEnter={handleOnHoverEnter}
-        onMouseLeave={handleOnHoverLeave}
+        // onMouseEnter={handleOnHoverEnter}
+        // onMouseLeave={handleOnHoverLeave}
       >
+        {!state.visibility && (
+          <Button
+            className={styles.show_btn}
+            type="primary"
+            icon={<DoubleRightOutlined className={styles.show_btn_icon} />}
+            size="middle"
+            onClick={handleShow}
+          />
+        )}
         {state.visibility && (
-          <div className={styles.select}>
-            <span className={styles.select_title}>{t('widgets.selectSort')}</span>
-            <select
-              value={`${sorting.type}`}
-              onChange={(e) => {
-                onChangeSort({ ...sorting, type: e.target.value as 'ASC' | 'DESC' });
-              }}
-            >
-              <option value="ASC">Name A-Z</option>
-              <option value="DESC">Name Z-A</option>
-            </select>
-          </div>
+          <>
+            <div className={styles.select}>
+              <span className={styles.select_title}>{t('widgets.selectSort')}</span>
+              <select
+                value={`${sorting.type}`}
+                onChange={(e) => {
+                  onChangeSort({ ...sorting, type: e.target.value as 'ASC' | 'DESC' });
+                }}
+              >
+                <option value="ASC">Name A-Z</option>
+                <option value="DESC">Name Z-A</option>
+              </select>
+            </div>
+            <Button
+              className={styles.hide_btn}
+              type="primary"
+              icon={<DoubleLeftOutlined className={styles.hide_btn_icon} />}
+              size="middle"
+              onClick={handleHide}
+            />
+          </>
         )}
       </div>
     );

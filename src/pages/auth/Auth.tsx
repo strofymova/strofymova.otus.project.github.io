@@ -18,7 +18,7 @@ const Auth: React.FC = React.memo(() => {
       <Layout>
         <SingInBlock className={styleName} />
       </Layout>
-      {showSignUp && <SingUp/>}
+      {showSignUp && <SingUp />}
     </>
   );
 });

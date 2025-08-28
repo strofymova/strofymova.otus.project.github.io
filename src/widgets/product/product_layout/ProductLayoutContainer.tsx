@@ -9,56 +9,56 @@ interface IProductLayoutContainerProps {
   infinityScroll?: boolean;
 }
 
-const ProductLayoutContainer: React.FC<IProductLayoutContainerProps> = React.memo(({
-  infinityScroll,
-}: IProductLayoutContainerProps) => {
-  const { id } = useParams();
+const ProductLayoutContainer: React.FC<IProductLayoutContainerProps> = React.memo(
+  ({ infinityScroll }: IProductLayoutContainerProps) => {
+    const { id } = useParams();
 
-  const {
-    loading,
-    isLoadingMore,
-    hasMore,
-    currentPage,
-    productsTotalCount,
-    sorting,
-    loadMoreProducts,
-    refetchWithNewSorting,
-  } = useProductsLoader({
-    categoryId: id,
-    pageSize: 10,
-  });
+    const {
+      loading,
+      isLoadingMore,
+      hasMore,
+      currentPage,
+      productsTotalCount,
+      sorting,
+      loadMoreProducts,
+      refetchWithNewSorting,
+    } = useProductsLoader({
+      categoryId: id,
+      pageSize: 10,
+    });
 
-  const handleSortChange = useCallback(
-    (newSorting: SortingInput) => {
-      refetchWithNewSorting(newSorting);
-    },
-    [refetchWithNewSorting]
-  );
+    const handleSortChange = useCallback(
+      (newSorting: SortingInput) => {
+        refetchWithNewSorting(newSorting);
+      },
+      [refetchWithNewSorting]
+    );
 
-  const handleShowMore = useCallback(() => {
-    loadMoreProducts(currentPage + 1);
-  }, [loadMoreProducts, currentPage]);
+    const handleShowMore = useCallback(() => {
+      loadMoreProducts(currentPage + 1);
+    }, [loadMoreProducts, currentPage]);
 
-  const handleIntersection = useCallback(() => {
-    if (infinityScroll) {
-      handleShowMore();
+    const handleIntersection = useCallback(() => {
+      if (infinityScroll) {
+        handleShowMore();
+      }
+    }, [infinityScroll, handleShowMore]);
+
+    if ((loading || isLoadingMore) && productsTotalCount === 0) {
+      return <CustomSpin />;
     }
-  }, [infinityScroll, handleShowMore]);
 
-  if ((loading || isLoadingMore) && productsTotalCount === 0) {
-    return <CustomSpin />;
+    return (
+      <ProductLayoutComponent
+        onShowMore={handleShowMore}
+        onIntersection={handleIntersection}
+        onSortChange={handleSortChange}
+        infinityScroll={infinityScroll}
+        hasMore={hasMore}
+        currentSorting={sorting}
+      />
+    );
   }
-
-  return (
-    <ProductLayoutComponent
-      onShowMore={handleShowMore}
-      onIntersection={handleIntersection}
-      onSortChange={handleSortChange}
-      infinityScroll={infinityScroll}
-      hasMore={hasMore}
-      currentSorting={sorting}
-    />
-  );
-});
-
+);
+ProductLayoutContainer.displayName = 'ProductLayoutContainer';
 export default ProductLayoutContainer;

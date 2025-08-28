@@ -15,62 +15,58 @@ interface IProductLayoutComponentProps {
   onSortChange: (newSorting: SortingInput) => void;
   currentSorting: SortingInput;
 }
-// React.FC = React.memo(() => (
-const ProductLayoutComponent: React.FC<IProductLayoutComponentProps> = React.memo(({
-  onShowMore,
-  onIntersection,
-  infinityScroll,
-  hasMore,
-  onSortChange,
-  currentSorting,
-}) => {
-  const { t } = useTranslation();
-  const minWidthFilter = 200;
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [productListStyle, setProductListStyle] = useState(styles.products);
-  const navigate = useNavigate();
-  const styleName = useThemeStyles(styles.showMoreBtn, {
-    light: styles.light,
-    dark: styles.dark,
-  });
 
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const widthFilter = entry.contentRect.width;
-        if (widthFilter < minWidthFilter && productListStyle === styles.productsSmall) {
-          setProductListStyle(styles.products);
-        } else if (widthFilter >= minWidthFilter && productListStyle === styles.products) {
-          setProductListStyle(styles.productsSmall);
-        }
-      }
+const ProductLayoutComponent: React.FC<IProductLayoutComponentProps> = React.memo(
+  ({ onShowMore, onIntersection, infinityScroll, hasMore, onSortChange, currentSorting }) => {
+    const { t } = useTranslation();
+    const minWidthFilter = 200;
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [productListStyle, setProductListStyle] = useState(styles.products);
+    const navigate = useNavigate();
+    const styleName = useThemeStyles(styles.showMoreBtn, {
+      light: styles.light,
+      dark: styles.dark,
     });
 
-    observer.observe(containerRef.current);
-  }, [productListStyle]);
+    useLayoutEffect(() => {
+      if (!containerRef.current) return;
 
-  const onClickPrev = () => {
-    navigate(-1);
-  };
+      const observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const widthFilter = entry.contentRect.width;
+          if (widthFilter < minWidthFilter && productListStyle === styles.productsSmall) {
+            setProductListStyle(styles.products);
+          } else if (widthFilter >= minWidthFilter && productListStyle === styles.products) {
+            setProductListStyle(styles.productsSmall);
+          }
+        }
+      });
 
-  return (
-    <>
-      <div className={styles.content_container}>
-        <FilterLayout ref={containerRef} sorting={currentSorting} onChangeSort={onSortChange} />
-        <ProductList className={productListStyle} onIntersection={onIntersection} infinityScroll={infinityScroll} />
-      </div>
-      <div className={styles.content_button}>
-        <button className={styleName} onClick={onClickPrev}>
-          {t('widgets.back')}
-        </button>
-        <button className={styleName} onClick={onShowMore} disabled={!hasMore}>
-          {t('widgets.product.showMore')}
-        </button>
-      </div>
-    </>
-  );
-});
+      observer.observe(containerRef.current);
+    }, [productListStyle]);
 
+    const onClickPrev = () => {
+      navigate(-1);
+    };
+
+    return (
+      <>
+        <div className={styles.content_container}>
+          <FilterLayout ref={containerRef} sorting={currentSorting} onChangeSort={onSortChange} />
+          <ProductList className={productListStyle} onIntersection={onIntersection} infinityScroll={infinityScroll} />
+        </div>
+        <div className={styles.content_button}>
+          <button className={styleName} onClick={onClickPrev}>
+            {t('widgets.back')}
+          </button>
+          <button className={styleName} onClick={onShowMore} disabled={!hasMore}>
+            {t('widgets.product.showMore')}
+          </button>
+        </div>
+      </>
+    );
+  }
+);
+
+ProductLayoutComponent.displayName = 'ProductLayoutComponent';
 export default ProductLayoutComponent;

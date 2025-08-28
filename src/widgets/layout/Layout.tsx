@@ -15,9 +15,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }: ILayoutProps) => {
   return (
     <div className={styleName}>
       <Header />
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

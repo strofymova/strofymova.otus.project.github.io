@@ -10,15 +10,15 @@ export const useAdminRight = (profile: Profile) => {
     const checkAdminStatus = async () => {
       try {
         setIsLoading(true);
-        
+
         // const service = await AccountService();
 
         if (profile?.email) {
           setIsAdmin(true);
-        //   const user = service.getUser(profile.email);
-        //   setIsAdmin(user?.type === UserType.admin);
-        // } else {
-        //   setIsAdmin(false);
+          //   const user = service.getUser(profile.email);
+          //   setIsAdmin(user?.type === UserType.admin);
+          // } else {
+          //   setIsAdmin(false);
         }
       } catch (error) {
         message.error('Failed to verify admin privileges');
