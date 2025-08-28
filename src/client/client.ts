@@ -7,7 +7,7 @@ import { URL } from './config';
 
 const httpLink = createHttpLink({
   uri: `${URL}/graphql`,
-  credentials: 'include',
+  credentials: 'omit',
 });
 
 const authLink = setContext((_, { headers }) => {
