@@ -1,12 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ClientProvider } from '../client';
-import LocalizationProvider from '../widgets/localization/LocalizationProvider';
-import { Theme, ThemeProvider } from '../widgets/theme';
 import { Routing } from '../routing/Routing';
 import { store } from '../store';
 import { Initializer } from '../store/Initializer';
+import LocalizationProvider from '../widgets/localization/LocalizationProvider';
 import { Locale } from '../widgets/localization/settings';
+import { Theme, ThemeProvider } from '../widgets/theme';
 
 function App() {
   return (

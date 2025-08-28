@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './layout.module.css';
-import Header from '../header/Header';
 import { useThemeStyles } from '../../shared/hooks/useThemeStyles';
+import Header from '../header/Header';
+import styles from './layout.module.css';
 
 interface ILayoutProps {
   children?: React.ReactNode;

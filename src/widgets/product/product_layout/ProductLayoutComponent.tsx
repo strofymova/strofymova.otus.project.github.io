@@ -14,10 +14,11 @@ interface IProductLayoutComponentProps {
   hasMore?: boolean;
   onSortChange: (newSorting: SortingInput) => void;
   currentSorting: SortingInput;
+  categoryId?: string | null;
 }
 
 const ProductLayoutComponent: React.FC<IProductLayoutComponentProps> = React.memo(
-  ({ onShowMore, onIntersection, infinityScroll, hasMore, onSortChange, currentSorting }) => {
+  ({ onShowMore, onIntersection, infinityScroll, hasMore, onSortChange, currentSorting, categoryId }) => {
     const { t } = useTranslation();
     const minWidthFilter = 200;
     const containerRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,12 @@ const ProductLayoutComponent: React.FC<IProductLayoutComponentProps> = React.mem
       <>
         <div className={styles.content_container}>
           <FilterLayout ref={containerRef} sorting={currentSorting} onChangeSort={onSortChange} />
-          <ProductList className={productListStyle} onIntersection={onIntersection} infinityScroll={infinityScroll} />
+          <ProductList
+            className={productListStyle}
+            categoryId={categoryId}
+            onIntersection={onIntersection}
+            infinityScroll={infinityScroll}
+          />
         </div>
         <div className={styles.content_button}>
           <button className={styleName} onClick={onClickPrev}>

@@ -20,6 +20,7 @@ export interface IProductList {
   className?: string;
   onIntersection?: () => void;
   infinityScroll: boolean;
+  categoryId?: string | null;
 }
 
 const mapProductToEditForm = ({ category, name, desc, price, photo }: Product) => ({
@@ -31,7 +32,12 @@ const mapProductToEditForm = ({ category, name, desc, price, photo }: Product) =
 });
 
 export const ProductList: React.FC<IProductList> = React.memo(
-  ({ className, onIntersection, infinityScroll: infinityScroll = false }: IProductList): React.ReactNode => {
+  ({
+    className,
+    onIntersection,
+    infinityScroll: infinityScroll = false,
+    categoryId,
+  }: IProductList): React.ReactNode => {
     const lastProductRef = useRef<HTMLDivElement>(null);
     const products = useSelector(productsSelectors.get);
     const profile = useSelector(profileSelectors.get);
@@ -73,7 +79,7 @@ export const ProductList: React.FC<IProductList> = React.memo(
         photo: null,
         name: undefined,
         desc: undefined,
-        categoryId: undefined,
+        categoryId: categoryId,
       };
       setSelectedId(null);
       setEditProduct(addProduct);
@@ -100,7 +106,12 @@ export const ProductList: React.FC<IProductList> = React.memo(
           );
         })}
         <Modal visible={isModalOpen} onClose={closeModal} title={t('widgets.product.edit')}>
-          <ProductEdit id={selectedId} productEdit={editProduct} onSave={handleOnSaveProduct} />
+          <ProductEdit
+            id={selectedId}
+            initCategoryId={categoryId}
+            productEdit={editProduct}
+            onSave={handleOnSaveProduct}
+          />
         </Modal>
       </div>
     );

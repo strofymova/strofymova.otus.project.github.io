@@ -56,6 +56,7 @@ const ProductLayoutContainer: React.FC<IProductLayoutContainerProps> = React.mem
         infinityScroll={infinityScroll}
         hasMore={hasMore}
         currentSorting={sorting}
+        categoryId={id}
       />
     );
   }

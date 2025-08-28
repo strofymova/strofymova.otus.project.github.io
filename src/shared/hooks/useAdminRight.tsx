@@ -2,6 +2,8 @@ import { message } from 'antd';
 import { useEffect, useState } from 'react';
 import { Profile } from 'src/entities/profile.types';
 
+const ADMIN_LOGIN = 'sunlight-vrn@mail.ru';
+
 export const useAdminRight = (profile: Profile) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,14 +13,10 @@ export const useAdminRight = (profile: Profile) => {
       try {
         setIsLoading(true);
 
-        // const service = await AccountService();
-
         if (profile?.email) {
-          setIsAdmin(true);
-          //   const user = service.getUser(profile.email);
-          //   setIsAdmin(user?.type === UserType.admin);
-          // } else {
-          //   setIsAdmin(false);
+          setIsAdmin(profile.email === ADMIN_LOGIN);
+        } else {
+          setIsAdmin(false);
         }
       } catch (error) {
         message.error('Failed to verify admin privileges');

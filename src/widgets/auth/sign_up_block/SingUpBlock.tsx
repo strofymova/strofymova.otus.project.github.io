@@ -40,7 +40,8 @@ export const SingUpBlock = memo<SingUpBlockProps>(({ className }: SingUpBlockPro
     return {
       onSubmit: (values, { resetForm }) => {
         console.log('Submit values: ', JSON.stringify(values));
-        signUp({ variables: { email: values.email, password: values.password, commandId: 'strofymova_dev' } })
+        //strofymova_dev
+        signUp({ variables: { email: values.email, password: values.password, commandId: 'signup' } })
           .then((res) => {
             const result = extractSignUp(res.data);
             if (result) {

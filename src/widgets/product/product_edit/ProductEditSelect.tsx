@@ -13,6 +13,7 @@ export interface IProductEditSelectProps {
   step?: string;
   error?: string;
   dataList: Category[];
+  initValue?: string | null;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   onBlur?: FocusEventHandler<HTMLSelectElement>;
 }
@@ -20,10 +21,17 @@ export interface IProductEditSelectProps {
 export const ProductEditSelect = forwardRef<
   HTMLSelectElement,
   IProductEditSelectProps & ReturnType<UseFormRegister<ProductAddInput | ProductUpdateInput>>
->(({ name, title, className, error, onBlur, onChange, dataList }: IProductEditSelectProps, ref) => (
+>(({ name, title, className, error, onBlur, onChange, dataList, initValue }: IProductEditSelectProps, ref) => (
   <div className={clsx(className, style.item)}>
     <div className={style.item_title}>{title}</div>
-    <select name={name} ref={ref} className={style.item_select} defaultValue="" onChange={onChange} onBlur={onBlur}>
+    <select
+      name={name}
+      ref={ref}
+      className={style.item_select}
+      defaultValue={initValue && true ? initValue : ''}
+      onChange={onChange}
+      onBlur={onBlur}
+    >
       <option value="" disabled>
         {title}
       </option>

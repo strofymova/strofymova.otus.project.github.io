@@ -2,17 +2,15 @@ import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CATEGORY, GetCategoryResponseQueries } from '../../shared/graphql/categories/query';
-import { RootState } from '../../store';
 import { categoriesActions } from '../../store/categories';
 import { profileActions } from '../../store/profile';
 import { tokenSelectors } from '../../store/token';
 import { GET_PROFILE, GetProfileResponse } from '../graphql/profile/query';
 
 export const useInitialization = () => {
-  const [error, setError] = useState<string | null>(null);
-
   const token = useSelector(tokenSelectors.get);
   const isAuth = token != null && token != undefined;
+  const [error, setError] = useState<string | null>(null);
 
   const dispatch = useDispatch();
   const {
@@ -30,17 +28,26 @@ export const useInitialization = () => {
       setError(profileLoadingErr.message);
     },
     fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
   });
 
-  const { loading: categoriesLoading, error: categoriesError } = useQuery<GetCategoryResponseQueries>(GET_CATEGORY, {
+  const {
+    refetch: refetchCategories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useQuery<GetCategoryResponseQueries>(GET_CATEGORY, {
+    skip: true,
     onCompleted: (data) => {
-      const categories = data.categories.getMany.data;
-      dispatch(categoriesActions.set({ items: categories, lastPage: 1, totalCount: categories.length }));
+      if (data) {
+        const categories = data.categories.getMany.data;
+        dispatch(categoriesActions.set({ items: categories, lastPage: 1, totalCount: categories.length }));
+      }
     },
     onError: (categoryLoadingErr) => {
       setError(categoryLoadingErr.message);
     },
     fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
   });
 
   useEffect(() => {
@@ -49,7 +56,8 @@ export const useInitialization = () => {
     } else {
       dispatch(profileActions.set(null));
     }
-  }, [isAuth, refetchProfile, dispatch]);
+    refetchCategories();
+  }, [isAuth, refetchProfile, refetchCategories, dispatch]);
 
   useEffect(() => {
     if (profileError) {
@@ -61,5 +69,5 @@ export const useInitialization = () => {
     }
   }, [profileError, categoriesError]);
 
-  return { error };
+  return { error, loading: profileLoading || categoriesLoading };
 };

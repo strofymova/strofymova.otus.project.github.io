@@ -29,9 +29,9 @@ import ProductEditItem from './ProductEditItem';
 import ProductEditSelect from './ProductEditSelect';
 
 const productSchema = z.object({
-  name: z.string().min(1, 'errors.is_required'),
+  name: z.string().min(1, { message: 'errors.is_required' }),
   price: z.number().min(0.01, { message: 'errors.invalid_price' }),
-  desc: z.union([z.string().max(10000, 'errors.invalid_description'), z.null()]),
+  desc: z.union([z.string().max(10000, { message: 'errors.invalid_description' }), z.null()]),
   photo: z.string().nullish(),
   categoryId: z.string().min(1, { message: 'errors.is_required' }),
 });
@@ -42,12 +42,14 @@ export interface IProductEdit {
   productEdit: ProductAddInput | ProductUpdateInput;
   onSave?: (editProduct: IProductEdit) => void;
   id: string | null;
+  initCategoryId?: string | null;
 }
 
 export function ProductEdit({
   id,
   productEdit: { price, name, desc, photo, categoryId },
   onSave: onSave,
+  initCategoryId,
 }: IProductEdit) {
   const { t } = useTranslation();
   const styleName = useThemeStyles(style.main, {
@@ -133,7 +135,6 @@ export function ProductEdit({
       onSubmit={(e) => {
         console.log('Form submitted');
         handleSubmit(onSubmit)(e);
-        // console.log(JSON.stringify(e.));
       }}
     >
       <img className={style.img} src={photo || unknowImageUrl} alt={name} />
@@ -157,7 +158,13 @@ export function ProductEdit({
           title={t('widgets.product.photo')}
           error={errors.photo?.message && t(errors.photo.message)}
         />
-        <ProductEditSelect {...register('categoryId')} dataList={categories} title={t('widgets.product.category')} />
+        <ProductEditSelect
+          {...register('categoryId')}
+          initValue={initCategoryId}
+          dataList={categories}
+          title={t('widgets.product.category')}
+          error={errors.categoryId.message && t(errors.categoryId.message)}
+        />
         <ProductEditItem
           {...register('desc')}
           type="text"

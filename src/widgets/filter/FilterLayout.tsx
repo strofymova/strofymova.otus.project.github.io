@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './filter_layout.module.css';
 import { SortingInput } from '../../entities/base.types';
@@ -34,7 +34,7 @@ const FilterLayout = forwardRef<HTMLDivElement, IFilterLayoutProps>(
 
     const [styleName, setStyleName] = useState<string>(styles.hide);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       setStyleName(state.visibility ? styles.show : styles.hide);
     }, [state.visibility]);
 
@@ -47,12 +47,7 @@ const FilterLayout = forwardRef<HTMLDivElement, IFilterLayoutProps>(
     };
 
     return (
-      <div
-        ref={ref}
-        className={clsx(mainStyle, styleName)}
-        // onMouseEnter={handleOnHoverEnter}
-        // onMouseLeave={handleOnHoverLeave}
-      >
+      <div ref={ref} className={clsx(mainStyle, styleName)}>
         {!state.visibility && (
           <Button
             className={styles.show_btn}

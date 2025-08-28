@@ -53,7 +53,7 @@ const OrderList: React.FC = () => {
     const children = (
       <ul className={styles.child_list}>
         {order.products.map((orderProduct) => (
-          <li key={orderProduct.id}>
+          <li key={orderProduct.product.id}>
             <span className={styles.left}>{orderProduct.product.name}</span>
             <span className={styles.right}>
               {orderProduct.product.price} x {orderProduct.quantity} ={' '}

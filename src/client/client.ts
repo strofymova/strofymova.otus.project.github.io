@@ -12,10 +12,13 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = storage.get(TOKEN_KEY);
+  console.log(token);
   return {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   };
 });

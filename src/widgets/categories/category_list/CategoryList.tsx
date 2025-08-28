@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ import style from './category_list.module.css';
 
 export interface ICategoryList {
   className?: string;
+  isAdmin: boolean;
 }
 
 const mapCategoryToEditForm = ({ name, photo }: Category) => ({
@@ -24,20 +25,13 @@ const mapCategoryToEditForm = ({ name, photo }: Category) => ({
   photo: photo ?? null,
 });
 
-export const CategoryList: React.FC<ICategoryList> = React.memo(({ className }: ICategoryList): React.ReactNode => {
+export const CategoryList: React.FC<ICategoryList> = ({ className, isAdmin }: ICategoryList): React.ReactNode => {
   const { t } = useTranslation();
-  const categories: Category[] = useSelector(categoriesSelectors.get);
-  const profile = useSelector(profileSelectors.get);
   const { isModalOpen, openModal, closeModal } = useModalManager();
-
   const [editCategory, setEditCategory] = useState<CategoryAddInput | CategoryUpdateInput>();
   const [selectedId, setSelectedId] = useState<string>();
   const navigate = useNavigate();
-  const { isAdmin, isLoading } = useAdminRight(profile);
-
-  useEffect(() => {
-    console.log('need update');
-  }, [profile]);
+  const categories: Category[] = useSelector(categoriesSelectors.get);
 
   const handleOnClickCategory = (id: string) => {
     navigate(`/category/${id}`);
@@ -68,10 +62,6 @@ export const CategoryList: React.FC<ICategoryList> = React.memo(({ className }: 
     openModal();
   };
 
-  if (isLoading) {
-    return <CustomSpin />;
-  }
-
   return (
     <div className={clsx(style.main, className)}>
       {isAdmin && (
@@ -95,7 +85,7 @@ export const CategoryList: React.FC<ICategoryList> = React.memo(({ className }: 
       </Modal>
     </div>
   );
-});
+};
 
 CategoryList.displayName = 'CategoryList';
 export default CategoryList;
