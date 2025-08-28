@@ -256,6 +256,17 @@
     transition: 0.3s;
 }
 
+.filter_layout-module_show_btn-vmgmh {
+    /* min-width: 200px; 
+    width: 20%;
+    transition: 0.3s; */
+}
+
+.filter_layout-module_hide_btn-YmBkx {
+    /* width: 1.5%;
+    transition: 0.3s; */
+}
+
 .filter_layout-module_light-a2gEk {
     border-color: var(--main-dark-backgroun-color);
     box-shadow: 1px 3px 20px 0 var(--main-dark-backgroun-color);
