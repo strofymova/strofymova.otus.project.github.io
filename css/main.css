@@ -1205,8 +1205,12 @@
   margin: auto;
   font-size: 20pt;
   text-align: center;
-  display: inherit;
+  display: flex !important;
+  flex-direction: column;
   opacity: 60%;
+  div {
+    font-size: 80pt;
+  }
 }
 .profile-module_main-GXAoC {
   width: 40%;
