@@ -3,11 +3,11 @@ import { setContext } from '@apollo/client/link/context';
 import { storage } from '../shared/storage/storage';
 import { TOKEN_KEY } from '../store/token';
 import { errorLink } from './errorLink';
-// import possibleTypes from './possibleTypes.json'
 import { URL } from './config';
 
 const httpLink = createHttpLink({
   uri: `${URL}/graphql`,
+  credentials: 'include',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -22,7 +22,5 @@ const authLink = setContext((_, { headers }) => {
 
 export const client: ApolloClient<unknown> = new ApolloClient({
   link: from([errorLink, authLink, httpLink]),
-  cache: new InMemoryCache({
-    // possibleTypes,
-  }),
+  cache: new InMemoryCache(),
 });
